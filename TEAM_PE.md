@@ -23,6 +23,11 @@ Establish your own additional team policies around the following aspects:
 
 #### Additional Expectations and Responsabilities
 **Step 2: Please, describe here (using as much text as you need) additional expections and responsabilities for this project iteration**.
+1. We would use facebook and other social network and PIAZZA platform to communicate and plan our schedule. We also created our chat group in Groupme. The expected time for response in within 30 minutes.
+2. Always notify the rest of group before and after we want to make changes to the main branch.
+3. Weekly meeting on zoom is required and at least one of us should attend the lab section in case we have some questions.
+4. ALways reach out to TAs and the instructor when we can't solve the problem. For normal problems, we should put them up in our chat gruop.
 
 ## Team Member Names
 **Step 3: Please enter your name. Each one of the team members should add the name through a different commit. For example, student A adds their name and commits, then student B adds their name and commits.**
+Xinyue Yu
