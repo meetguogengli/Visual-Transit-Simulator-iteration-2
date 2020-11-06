@@ -1,10 +1,10 @@
-# Team Policies and Expectations
+Team Policies and Expectations
 
 ## Instructor's Expectations and Responsabilities for All Students
 
 ### Project Iteration Responsibilities of the Team (as a Team)
 * Together, determine the distribution of work and design this distribution so that it is possible for each team member to contribute a roughly equal effort toward the success of the project. Make your best guess about this at the start of the project, and refine the responsibilities if needed as you go. Consult the instructor if any issues arise or you need clarifications.
-
+We would try our best to make sure that each group member should be distributed same amouuntt of work.For examole, I can do task 2 4 6, Xinyue could do 1 3 5 and Guogeng could do 7 8 9 10 or in some other ways.
 #### Distribution of Work
 **Step 1: Please, provide here a brief description (one short paragraph) of the distribution of work across your team. You can refine this description as you carry out the project iteration.**
 
@@ -27,8 +27,9 @@ Establish your own additional team policies around the following aspects:
 2. Always notify the rest of group before and after we want to make changes to the main branch.
 3. Weekly meeting on zoom is required and at least one of us should attend the lab section in case we have some questions.
 4. ALways reach out to TAs and the instructor when we can't solve the problem. For normal problems, we should put them up in our chat gruop.
-
+5. In order to reduce confusion, always be careful with the branch name.
 ## Team Member Names
 **Step 3: Please enter your name. Each one of the team members should add the name through a different commit. For example, student A adds their name and commits, then student B adds their name and commits.**
-
+Albert Wang
 Xinyue Yu
+
