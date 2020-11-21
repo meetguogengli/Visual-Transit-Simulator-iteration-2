@@ -5,6 +5,7 @@ import edu.umn.cs.csci3081w.project.model.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.time.LocalDateTime;
 
 public class VisualizationSimulator {
 
@@ -73,6 +74,19 @@ public class VisualizationSimulator {
    * @param speed parameter for bus speed
    * @return created bus
    */
+  public Bus createBuses(String name, Route outbound, Route inbound, double speed) {
+    LocalDateTime dateOfNow = LocalDateTime.now();
+    int timeOfDate = dateOfNow.getDayOfMonth();
+    //System.out.println(dateOfNow);
+    if (timeOfDate >= 1 && timeOfDate <= 15) {
+      Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
+      return bus;
+    } else {
+      Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
+      return bus;
+    }
+  }
+  /*
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
     Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
     return bus;
@@ -82,6 +96,7 @@ public class VisualizationSimulator {
     Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
     return bus;
   }
+  */
 
   /**
    * Updates the simulation at each step.
@@ -99,7 +114,7 @@ public class VisualizationSimulator {
           Route outbound = prototypeRoutes.get(2 * i);
           Route inbound = prototypeRoutes.get(2 * i + 1);
           busses
-              .add(createRandomBus(String.valueOf(busId),
+              .add(createBuses(String.valueOf(busId),
                   outbound.shallowCopy(), inbound.shallowCopy(), 1));
           busId++;
           timeSinceLastBus.set(i, busStartTimings.get(i));
