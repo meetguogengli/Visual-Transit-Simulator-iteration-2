@@ -75,11 +75,6 @@ public class VisualizationSimulator {
    * @return created bus
    */
   public Bus createBuses(String name, Route outbound, Route inbound, double speed){
-    Bus bus=busFacotry.makeBus(name,outbound,inbound,speed);
-    return bus;
-  }
-  /*
-  public Bus createBuses(String name, Route outbound, Route inbound, double speed){
     LocalDateTime dateOfNow=LocalDateTime.now();
     int timeOfDate=dateOfNow.getDayOfMonth();
     //System.out.println(dateOfNow);
@@ -92,7 +87,6 @@ public class VisualizationSimulator {
       return bus;
     }
   }
-   */
   /*
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
     Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
