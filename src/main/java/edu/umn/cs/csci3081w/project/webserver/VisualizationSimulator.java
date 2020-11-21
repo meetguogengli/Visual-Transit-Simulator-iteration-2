@@ -19,7 +19,7 @@ public class VisualizationSimulator {
   private int busId = 1000;
   private boolean paused = false;
   private Random rand;
-
+  private BusFactory busFacotry;
   /**
    * Constructor for Simulation.
    * @param webI MWS object
@@ -34,6 +34,7 @@ public class VisualizationSimulator {
     this.busses = new ArrayList<Bus>();
     this.timeSinceLastBus = new ArrayList<Integer>();
     this.rand = new Random();
+    this.busFacotry = new OrderBasedBusFactory();
   }
 
   /**
@@ -73,8 +74,12 @@ public class VisualizationSimulator {
    * @return created bus
    */
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
-    BusFactory busFacotry = new OrderBasedBusFactory();
-    Bus bus = busFacotry.makeBus(name, outbound, inbound, speed);
+    Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
+    return bus;
+  }
+
+  public Bus createStrategyBus(String name, Route outbound, Route inbound, double speed) {
+    Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
     return bus;
   }
 
