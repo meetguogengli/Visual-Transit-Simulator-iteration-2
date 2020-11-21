@@ -1,10 +1,7 @@
 package edu.umn.cs.csci3081w.project.webserver;
 
-import edu.umn.cs.csci3081w.project.model.Bus;
-import edu.umn.cs.csci3081w.project.model.LargeBus;
-import edu.umn.cs.csci3081w.project.model.RegularBus;
-import edu.umn.cs.csci3081w.project.model.Route;
-import edu.umn.cs.csci3081w.project.model.SmallBus;
+import edu.umn.cs.csci3081w.project.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -76,14 +73,9 @@ public class VisualizationSimulator {
    * @return created bus
    */
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
-    int choice = rand.nextInt(3);
-    if (choice == 0) {
-      return new SmallBus(name, outbound, inbound, speed);
-    } else if (choice == 1) {
-      return new RegularBus(name, outbound, inbound, speed);
-    } else {
-      return new LargeBus(name, outbound, inbound, speed);
-    }
+    BusFactory busFacotry = new OrderBasedBusFactory();
+    Bus bus = busFacotry.makeBus(name, outbound, inbound, speed);
+    return bus;
   }
 
   /**
