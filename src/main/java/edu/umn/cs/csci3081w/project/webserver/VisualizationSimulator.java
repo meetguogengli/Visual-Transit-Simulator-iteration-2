@@ -78,7 +78,7 @@ public class VisualizationSimulator {
     LocalDateTime dateOfNow=LocalDateTime.now();
     int timeOfDate=dateOfNow.getDayOfMonth();
     //System.out.println(dateOfNow);
-    if (timeOfDate==1 && timeOfDate ==15){
+    if (timeOfDate==1 || timeOfDate ==15){
       Bus bus=busFacotry.makeRandomBus(name,outbound,inbound,speed);
       return bus;
     }
