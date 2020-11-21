@@ -74,18 +74,25 @@ public class VisualizationSimulator {
    * @param speed parameter for bus speed
    * @return created bus
    */
-  public Bus createBuses(String name, Route outbound, Route inbound, double speed) {
-    LocalDateTime dateOfNow = LocalDateTime.now();
-    int timeOfDate = dateOfNow.getDayOfMonth();
+  public Bus createBuses(String name, Route outbound, Route inbound, double speed){
+    Bus bus=busFacotry.makeBus(name,outbound,inbound,speed);
+    return bus;
+  }
+  /*
+  public Bus createBuses(String name, Route outbound, Route inbound, double speed){
+    LocalDateTime dateOfNow=LocalDateTime.now();
+    int timeOfDate=dateOfNow.getDayOfMonth();
     //System.out.println(dateOfNow);
-    if (timeOfDate >= 1 && timeOfDate <= 15) {
-      Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
+    if (timeOfDate>=1 && timeOfDate <=15){
+      Bus bus=busFacotry.makeRandomBus(name,outbound,inbound,speed);
       return bus;
-    } else {
-      Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
+    }
+    else {
+      Bus bus=busFacotry.makeStrategyBus(name,outbound,inbound,speed);
       return bus;
     }
   }
+   */
   /*
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
     Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
