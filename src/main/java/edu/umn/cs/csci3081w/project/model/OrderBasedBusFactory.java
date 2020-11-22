@@ -7,7 +7,6 @@ public class OrderBasedBusFactory extends BusFactory{
   private int count_s2 = 0;
   private int count_s3 = 0;
 
-
   @Override
   public Bus makeRandomBus(String name, Route outbound, Route inbound, double speed){
     Random rand = new Random();
@@ -20,6 +19,7 @@ public class OrderBasedBusFactory extends BusFactory{
       return new LargeBus(name, outbound, inbound, speed);
     }
   }
+
   @Override
   public Bus makeStrategyBus(String name, Route outbound, Route inbound, double speed){
     LocalDateTime timeOfNow = LocalDateTime.now();
@@ -54,6 +54,5 @@ public class OrderBasedBusFactory extends BusFactory{
     }
     return new SmallBus(name, outbound, inbound, speed);
   }
-
 }
 
