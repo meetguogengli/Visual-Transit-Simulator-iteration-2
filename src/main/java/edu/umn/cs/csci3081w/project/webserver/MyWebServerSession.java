@@ -55,6 +55,7 @@ public class MyWebServerSession {
     state.getCommands().put("getBusses", new GetBussesCommand(myWS));
     state.getCommands().put("start", new StartCommand(mySim));
     state.getCommands().put("update", new UpdateCommand(mySim));
+    state.getCommands().put("listenStop", new ListenStopCommand(mySim));
     state.getCommands().put("initRoutes", new InitRoutesCommand(cm));
     state.getCommands().put("pause", new PauseCommand(mySim));
   }
