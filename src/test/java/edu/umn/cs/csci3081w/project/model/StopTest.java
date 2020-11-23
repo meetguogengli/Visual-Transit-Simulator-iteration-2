@@ -49,6 +49,20 @@ public class StopTest {
     stop.addPassengers(passenger1);
     assertEquals(2, stop.getNumPassengersPresent());
   }
+  /**
+   * Testing state of stop after adding passenger.
+   */
+  @Test
+  public void testStopDataConstructor(){
+
+    Position po=new Position( 44.972392, -93.243774);
+    StopData data=new StopData("3",po,4);
+    assertEquals("3",data.getId());
+    assertEquals(4,data.getNumPeople());
+    assertEquals(44.972392,data.getPosition().getXcoordLoc());
+    assertEquals(-93.243774,data.getPosition().getYcoordLoc());
+
+  }
 
   /**
    * Testing state of stop after adding passenger.
@@ -172,12 +186,12 @@ public class StopTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-          "####Stop Info Start####" + System.lineSeparator()
-              + "ID: 0" + System.lineSeparator()
-              + "****Passengers Info Start****" + System.lineSeparator()
-              + "Num passengers waiting: 0" + System.lineSeparator()
-              + "****Passengers Info End****" + System.lineSeparator()
-              + "####Stop Info End####" + System.lineSeparator();
+              "####Stop Info Start####" + System.lineSeparator()
+                      + "ID: 0" + System.lineSeparator()
+                      + "****Passengers Info Start****" + System.lineSeparator()
+                      + "Num passengers waiting: 0" + System.lineSeparator()
+                      + "****Passengers Info End****" + System.lineSeparator()
+                      + "####Stop Info End####" + System.lineSeparator();
       assertEquals(data, strToCompare);
     } catch (IOException ioe) {
       fail();
@@ -202,19 +216,19 @@ public class StopTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-          "####Stop Info Start####" + System.lineSeparator()
-              + "ID: 0" + System.lineSeparator()
-              + "****Passengers Info Start****" + System.lineSeparator()
-              + "Num passengers waiting: 1" + System.lineSeparator()
-              + "####Passenger Info Start####" + System.lineSeparator()
-              + "Name: Goldy" + System.lineSeparator()
-              + "Destination: 1" + System.lineSeparator()
-              + "Total wait: 0" + System.lineSeparator()
-              + "Wait at stop: 0" + System.lineSeparator()
-              + "Time on bus: 0" + System.lineSeparator()
-              + "####Passenger Info End####" + System.lineSeparator()
-              + "****Passengers Info End****" + System.lineSeparator()
-              + "####Stop Info End####" + System.lineSeparator();
+              "####Stop Info Start####" + System.lineSeparator()
+                      + "ID: 0" + System.lineSeparator()
+                      + "****Passengers Info Start****" + System.lineSeparator()
+                      + "Num passengers waiting: 1" + System.lineSeparator()
+                      + "####Passenger Info Start####" + System.lineSeparator()
+                      + "Name: Goldy" + System.lineSeparator()
+                      + "Destination: 1" + System.lineSeparator()
+                      + "Total wait: 0" + System.lineSeparator()
+                      + "Wait at stop: 0" + System.lineSeparator()
+                      + "Time on bus: 0" + System.lineSeparator()
+                      + "####Passenger Info End####" + System.lineSeparator()
+                      + "****Passengers Info End****" + System.lineSeparator()
+                      + "####Stop Info End####" + System.lineSeparator();
       assertEquals(data, strToCompare);
     } catch (IOException ioe) {
       fail();

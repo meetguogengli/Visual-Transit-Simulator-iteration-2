@@ -20,8 +20,7 @@ public class VisualizationSimulator {
   private int busId = 1000;
   private boolean paused = false;
   private Random rand;
-  private RandomBusFactory randomBF;
-  private StrategyBusFactory strategyBF;
+  private OrderBasedBusFactory busFacotry;
   /**
    * Constructor for Simulation.
    * @param webI MWS object
@@ -36,8 +35,8 @@ public class VisualizationSimulator {
     this.busses = new ArrayList<Bus>();
     this.timeSinceLastBus = new ArrayList<Integer>();
     this.rand = new Random();
-    this.randomBF = new RandomBusFactory();
-    this.strategyBF = new StrategyBusFactory();
+    this.busFacotry = new OrderBasedBusFactory();
+
   }
 
   /**
@@ -67,37 +66,17 @@ public class VisualizationSimulator {
     paused = !paused;
   }
 
-  /**
-   * Create bus randomly.
-   *
-   * @param name parameter for the name of the bus
-   * @param outbound parameter for outbound route
-   * @param inbound parameter for inbound route
-   * @param speed parameter for bus speed
-   * @return created bus
-   */
-  public Bus createBus(String name, Route outbound, Route inbound, double speed){
-    LocalDateTime timeOfNow = LocalDateTime.now();
-    int date = timeOfNow.getDayOfMonth();
-    if (date==1 || date==15){
-      Bus bus1 = createRandomBus(name, outbound, inbound, speed);
-      return bus1;
-    }
-    else{
-      Bus bus2=createStrategyBus(name, outbound, inbound, speed);
-      return bus2;
-    }
-  }
 
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
-    Bus bus = randomBF.busSelection(name, outbound, inbound, speed);
+    Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
+    return bus;
+  }
+  public Bus createStrategyBus(String name, Route outbound, Route inbound, double speed) {
+    Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
     return bus;
   }
 
-  public Bus createStrategyBus(String name, Route outbound, Route inbound, double speed) {
-    Bus bus = strategyBF.busSelection(name, outbound, inbound, speed);
-    return bus;
-  }
+
 
   /**
    * Updates the simulation at each step.
@@ -115,7 +94,7 @@ public class VisualizationSimulator {
           Route outbound = prototypeRoutes.get(2 * i);
           Route inbound = prototypeRoutes.get(2 * i + 1);
           busses
-              .add(createBus(String.valueOf(busId),
+              .add(createRandomBus(String.valueOf(busId),
                   outbound.shallowCopy(), inbound.shallowCopy(), 1));
           busId++;
           timeSinceLastBus.set(i, busStartTimings.get(i));

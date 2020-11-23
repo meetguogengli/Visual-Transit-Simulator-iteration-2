@@ -111,32 +111,32 @@ public class RouteTest {
     testStream.close();
     outputStream.close();
     String strToCompare =
-        "####Route Info Start####" + System.lineSeparator()
-            + "Name: TestRoute" + System.lineSeparator()
-            + "Num stops: 3" + System.lineSeparator()
-            + "****Stops Info Start****" + System.lineSeparator()
-            + "++++Next Stop Info Start++++" + System.lineSeparator()
-            + "####Stop Info Start####" + System.lineSeparator()
-            + "ID: 0" + System.lineSeparator()
-            + "****Passengers Info Start****" + System.lineSeparator()
-            + "Num passengers waiting: 0" + System.lineSeparator()
-            + "****Passengers Info End****" + System.lineSeparator()
-            + "####Stop Info End####" + System.lineSeparator()
-            + "++++Next Stop Info End++++" + System.lineSeparator()
-            + "####Stop Info Start####" + System.lineSeparator()
-            + "ID: 1" + System.lineSeparator()
-            + "****Passengers Info Start****" + System.lineSeparator()
-            + "Num passengers waiting: 0" + System.lineSeparator()
-            + "****Passengers Info End****" + System.lineSeparator()
-            + "####Stop Info End####" + System.lineSeparator()
-            + "####Stop Info Start####" + System.lineSeparator()
-            + "ID: 2" + System.lineSeparator()
-            + "****Passengers Info Start****" + System.lineSeparator()
-            + "Num passengers waiting: 0" + System.lineSeparator()
-            + "****Passengers Info End****" + System.lineSeparator()
-            + "####Stop Info End####" + System.lineSeparator()
-            + "****Stops Info End****" + System.lineSeparator()
-            + "####Route Info End####" + System.lineSeparator();
+            "####Route Info Start####" + System.lineSeparator()
+                    + "Name: TestRoute" + System.lineSeparator()
+                    + "Num stops: 3" + System.lineSeparator()
+                    + "****Stops Info Start****" + System.lineSeparator()
+                    + "++++Next Stop Info Start++++" + System.lineSeparator()
+                    + "####Stop Info Start####" + System.lineSeparator()
+                    + "ID: 0" + System.lineSeparator()
+                    + "****Passengers Info Start****" + System.lineSeparator()
+                    + "Num passengers waiting: 0" + System.lineSeparator()
+                    + "****Passengers Info End****" + System.lineSeparator()
+                    + "####Stop Info End####" + System.lineSeparator()
+                    + "++++Next Stop Info End++++" + System.lineSeparator()
+                    + "####Stop Info Start####" + System.lineSeparator()
+                    + "ID: 1" + System.lineSeparator()
+                    + "****Passengers Info Start****" + System.lineSeparator()
+                    + "Num passengers waiting: 0" + System.lineSeparator()
+                    + "****Passengers Info End****" + System.lineSeparator()
+                    + "####Stop Info End####" + System.lineSeparator()
+                    + "####Stop Info Start####" + System.lineSeparator()
+                    + "ID: 2" + System.lineSeparator()
+                    + "****Passengers Info Start****" + System.lineSeparator()
+                    + "Num passengers waiting: 0" + System.lineSeparator()
+                    + "****Passengers Info End****" + System.lineSeparator()
+                    + "####Stop Info End####" + System.lineSeparator()
+                    + "****Stops Info End****" + System.lineSeparator()
+                    + "####Route Info End####" + System.lineSeparator();
     assertEquals(strToCompare, data);
     assertEquals(strToCompare, data);
   }
@@ -175,7 +175,59 @@ public class RouteTest {
     Stop prevStop = testRoute.prevStop();
     assertEquals(prevStop, stop);
   }
+  /**
+   * Test previous stop at middle.
+   */
+  @Test
+  public void testPreviousStopAtMiddle() {
+    Stop stop = new Stop(0, 44.972392, -93.243774);
+    Stop stop2 = new Stop(1, 44.973580, -93.235071);
+    Stop stop3 = new Stop(2, 44.975392, -93.226632);
+    List<Stop> stops = new ArrayList<>();
+    stops.add(stop);
+    stops.add(stop2);
+    stops.add(stop3);
+    List<Double> distances = new ArrayList<>();
+    distances.add(0.9712663713083954);
+    distances.add(0.9712663713083954);
+    List<Double> probabilities = new ArrayList<>();
+    probabilities.add(.15);
+    probabilities.add(0.3);
+    probabilities.add(.0);
+    Route testRoute = TestUtils.createRouteGivenData(stops, distances, probabilities);
 
+    testRoute.toNextStop();
+    testRoute.toNextStop();
+    Stop prevStop = testRoute.prevStop();
+    assertEquals(prevStop, stop2);
+  }
+  /**
+   * Test previous stop at middle.
+   */
+  @Test
+  public void testPreviousStopAtEnd() {
+    Stop stop = new Stop(0, 44.972392, -93.243774);
+    Stop stop2 = new Stop(1, 44.973580, -93.235071);
+    Stop stop3 = new Stop(2, 44.975392, -93.226632);
+    List<Stop> stops = new ArrayList<>();
+    stops.add(stop);
+    stops.add(stop2);
+    stops.add(stop3);
+    List<Double> distances = new ArrayList<>();
+    distances.add(0.9712663713083954);
+    distances.add(0.9712663713083954);
+    List<Double> probabilities = new ArrayList<>();
+    probabilities.add(.15);
+    probabilities.add(0.3);
+    probabilities.add(.0);
+    Route testRoute = TestUtils.createRouteGivenData(stops, distances, probabilities);
+
+    testRoute.toNextStop();
+    testRoute.toNextStop();
+    testRoute.toNextStop();
+    Stop prevStop = testRoute.prevStop();
+    assertEquals(prevStop, stop3);
+  }
   /**
    * Test to next stop at beginning.
    */
@@ -204,6 +256,34 @@ public class RouteTest {
   }
 
   /**
+   * Test to next stop at the end.
+   */
+  @Test
+  public void testNextStopAtEnd() {
+    Stop stop = new Stop(0, 44.972392, -93.243774);
+    Stop stop2 = new Stop(1, 44.973580, -93.235071);
+    Stop stop3 = new Stop(2, 44.975392, -93.226632);
+    List<Stop> stops = new ArrayList<>();
+    stops.add(stop);
+    stops.add(stop2);
+    stops.add(stop3);
+    List<Double> distances = new ArrayList<>();
+    distances.add(0.9712663713083954);
+    distances.add(0.9712663713083954);
+    List<Double> probabilities = new ArrayList<>();
+    probabilities.add(.15);
+    probabilities.add(0.3);
+    probabilities.add(.0);
+    Route testRoute = TestUtils.createRouteGivenData(stops, distances, probabilities);
+    testRoute.toNextStop();
+    testRoute.toNextStop();
+
+    int destinationStopIndex = testRoute.getDestinationStopIndex();
+    Stop nextStop = testRoute.getDestinationStop();
+    assertEquals(stop3, nextStop);
+    assertEquals(2, destinationStopIndex);
+  }
+  /**
    * Test total route distance.
    */
   @Test
@@ -224,7 +304,30 @@ public class RouteTest {
     double dist = testRoute.getNextStopDistance();
     assertEquals(0.0, dist);
   }
-
+  /**
+   * Test route data is when not updated.
+   */
+  @Test
+  public void getNextStopDistance(){
+    Stop stop = new Stop(0, 44.972392, -93.243774);
+    Stop stop2 = new Stop(1, 44.973580, -93.235071);
+    Stop stop3 = new Stop(2, 44.975392, -93.226632);
+    List<Stop> stops = new ArrayList<>();
+    stops.add(stop);
+    stops.add(stop2);
+    stops.add(stop3);
+    List<Double> distances = new ArrayList<>();
+    distances.add(0.9712663713083954);
+    distances.add(0.9712663713083954);
+    List<Double> probabilities = new ArrayList<>();
+    probabilities.add(.15);
+    probabilities.add(0.3);
+    probabilities.add(.0);
+    Route testRoute = TestUtils.createRouteGivenData(stops, distances, probabilities);
+    testRoute.toNextStop();
+    double dist = testRoute.getNextStopDistance();
+    assertEquals(0.9712663713083954, dist);
+  }
   /**
    * Test generate passenger.
    */
@@ -260,4 +363,5 @@ public class RouteTest {
     assertEquals("", testRouteData.getId());
     assertTrue(testRouteData.getStops().isEmpty());
   }
+
 }
