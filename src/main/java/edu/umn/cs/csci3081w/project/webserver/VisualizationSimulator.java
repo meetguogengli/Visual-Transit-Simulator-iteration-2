@@ -20,7 +20,7 @@ public class VisualizationSimulator {
   private int busId = 1000;
   private boolean paused = false;
   private Random rand;
-  private OrderBasedBusFactory busFacotry;
+  private BusFactory busFacotry;
   /**
    * Constructor for Simulation.
    * @param webI MWS object
@@ -36,7 +36,6 @@ public class VisualizationSimulator {
     this.timeSinceLastBus = new ArrayList<Integer>();
     this.rand = new Random();
     this.busFacotry = new OrderBasedBusFactory();
-
   }
 
   /**
@@ -66,16 +65,31 @@ public class VisualizationSimulator {
     paused = !paused;
   }
 
+  /**
+   * Create bus randomly.
+   *
+   * @param name parameter for the name of the bus
+   * @param outbound parameter for outbound route
+   * @param inbound parameter for inbound route
+   * @param speed parameter for bus speed
+   * @return created bus
+   */
+
+  public Bus createBuses(String name, Route outbound, Route inbound, double speed){
+    LocalDateTime dateOfNow=LocalDateTime.now();
+    int timeOfDate=dateOfNow.getDayOfMonth();
+    return busFacotry.makeBusSelection(name,outbound,inbound,speed);
+  }
 
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
     Bus bus = busFacotry.makeRandomBus(name, outbound, inbound, speed);
     return bus;
   }
+
   public Bus createStrategyBus(String name, Route outbound, Route inbound, double speed) {
     Bus bus = busFacotry.makeStrategyBus(name, outbound, inbound, speed);
     return bus;
   }
-
 
 
   /**
@@ -85,8 +99,8 @@ public class VisualizationSimulator {
     if (!paused) {
       simulationTimeElapsed++;
       System.out.println("~~~~The simulation time is now"
-          + "at time step "
-          + simulationTimeElapsed + "~~~~");
+              + "at time step "
+              + simulationTimeElapsed + "~~~~");
       // Check if we need to generate new busses
       for (int i = 0; i < timeSinceLastBus.size(); i++) {
         // Check if we need to make a new bus
@@ -94,8 +108,8 @@ public class VisualizationSimulator {
           Route outbound = prototypeRoutes.get(2 * i);
           Route inbound = prototypeRoutes.get(2 * i + 1);
           busses
-              .add(createRandomBus(String.valueOf(busId),
-                  outbound.shallowCopy(), inbound.shallowCopy(), 1));
+                  .add(createBuses(String.valueOf(busId),
+                          outbound.shallowCopy(), inbound.shallowCopy(), 1));
           busId++;
           timeSinceLastBus.set(i, busStartTimings.get(i));
           timeSinceLastBus.set(i, timeSinceLastBus.get(i) - 1);
