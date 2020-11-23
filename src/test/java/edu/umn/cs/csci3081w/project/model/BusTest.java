@@ -613,7 +613,7 @@ public class BusTest {
     assertEquals(1, passNum);
   }
 
-  /* Test number of passengers on bus.
+  /* Test OrderBasedFactory
    */
   @Test
   public void testOrderBasedFactory() {

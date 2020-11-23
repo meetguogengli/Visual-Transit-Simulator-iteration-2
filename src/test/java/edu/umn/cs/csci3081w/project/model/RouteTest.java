@@ -98,7 +98,7 @@ public class RouteTest {
   }
 
   /**
-   * Test report route info.
+   * Test report route info with stops.
    */
   @Test
   public void testRouteReportWithStops() throws IOException {
@@ -202,7 +202,7 @@ public class RouteTest {
     assertEquals(prevStop, stop2);
   }
   /**
-   * Test previous stop at middle.
+   * Test previous stop at the end.
    */
   @Test
   public void testPreviousStopAtEnd() {
@@ -305,10 +305,10 @@ public class RouteTest {
     assertEquals(0.0, dist);
   }
   /**
-   * Test route data is when not updated.
+   * Test get next stop at the middle of the trip.
    */
   @Test
-  public void getNextStopDistance(){
+  public void testGetNextStopDistance(){
     Stop stop = new Stop(0, 44.972392, -93.243774);
     Stop stop2 = new Stop(1, 44.973580, -93.235071);
     Stop stop3 = new Stop(2, 44.975392, -93.226632);
