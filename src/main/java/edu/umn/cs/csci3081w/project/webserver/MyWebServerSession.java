@@ -32,6 +32,7 @@ public class MyWebServerSession {
 
   /**
    * Function which runs when client connection is made.
+   *
    * @param session session object
    */
   @OnOpen
@@ -65,6 +66,7 @@ public class MyWebServerSession {
 
   /**
    * Function which executes when a simulation command is received from the client.
+   *
    * @param message incoming message
    */
   @OnMessage
@@ -81,6 +83,7 @@ public class MyWebServerSession {
 
   /**
    * sends simulation information to the client.
+   *
    * @param message incoming data
    */
   public void sendJson(JsonObject message) {
@@ -98,6 +101,7 @@ public class MyWebServerSession {
 
   /**
    * Runs when session is closed by the client.
+   *
    * @param session session object
    */
   @OnClose

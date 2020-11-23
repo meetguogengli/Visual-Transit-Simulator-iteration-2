@@ -1,11 +1,19 @@
 package edu.umn.cs.csci3081w.project.webserver;
 
-import edu.umn.cs.csci3081w.project.model.*;
+import com.google.gson.JsonObject;
+import edu.umn.cs.csci3081w.project.model.Bus;
+import edu.umn.cs.csci3081w.project.model.Observer;
+import edu.umn.cs.csci3081w.project.model.OrderBasedBusFactory;
+import edu.umn.cs.csci3081w.project.model.Route;
+import edu.umn.cs.csci3081w.project.model.Stop;
+import edu.umn.cs.csci3081w.project.model.StopData;
+import edu.umn.cs.csci3081w.project.model.SubjectBus;
+import edu.umn.cs.csci3081w.project.model.SubjectStop;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.time.LocalDateTime;
-import com.google.gson.JsonObject;
+
 
 public class VisualizationSimulator {
 
@@ -28,7 +36,8 @@ public class VisualizationSimulator {
 
   /**
    * Constructor for Simulation.
-   * @param webI MWS object
+   *
+   * @param webI    MWS object
    * @param configM config object
    */
   public VisualizationSimulator(MyWebServer webI, ConfigManager configM) {
@@ -51,14 +60,15 @@ public class VisualizationSimulator {
 
   /**
    * Starts the simulation.
+   *
    * @param busStartTimingsParam start timings of bus
-   * @param numTimeStepsParam number of time steps
+   * @param numTimeStepsParam    number of time steps
    */
   public void start(List<Integer> busStartTimingsParam, int numTimeStepsParam) {
     this.busStartTimings = busStartTimingsParam;
     this.numTimeSteps = numTimeStepsParam;
     for (int i = 0; i < busStartTimings.size(); i++) {
-      this.timeSinceLastBus.add(i,  0);
+      this.timeSinceLastBus.add(i, 0);
     }
     simulationTimeElapsed = 0;
     prototypeRoutes = configManager.getRoutes();
@@ -79,17 +89,17 @@ public class VisualizationSimulator {
   /**
    * Create bus randomly.
    *
-   * @param name parameter for the name of the bus
+   * @param name     parameter for the name of the bus
    * @param outbound parameter for outbound route
-   * @param inbound parameter for inbound route
-   * @param speed parameter for bus speed
+   * @param inbound  parameter for inbound route
+   * @param speed    parameter for bus speed
    * @return created bus
    */
 
-  public Bus createBuses(String name, Route outbound, Route inbound, double speed){
-    LocalDateTime dateOfNow=LocalDateTime.now();
-    int timeOfDate=dateOfNow.getDayOfMonth();
-    return busFacotry.makeBusSelection(name,outbound,inbound,speed);
+  public Bus createBuses(String name, Route outbound, Route inbound, double speed) {
+    LocalDateTime dateOfNow = LocalDateTime.now();
+    int timeOfDate = dateOfNow.getDayOfMonth();
+    return busFacotry.makeBusSelection(name, outbound, inbound, speed);
   }
 
   public Bus createRandomBus(String name, Route outbound, Route inbound, double speed) {
@@ -110,8 +120,8 @@ public class VisualizationSimulator {
     if (!paused) {
       simulationTimeElapsed++;
       System.out.println("~~~~The simulation time is now"
-              + "at time step "
-              + simulationTimeElapsed + "~~~~");
+          + "at time step "
+          + simulationTimeElapsed + "~~~~");
       // Check if we need to generate new busses
       for (int i = 0; i < timeSinceLastBus.size(); i++) {
         // Check if we need to make a new bus
@@ -119,8 +129,8 @@ public class VisualizationSimulator {
           Route outbound = prototypeRoutes.get(2 * i);
           Route inbound = prototypeRoutes.get(2 * i + 1);
           busses
-                  .add(createBuses(String.valueOf(busId),
-                          outbound.shallowCopy(), inbound.shallowCopy(), 1));
+              .add(createBuses(String.valueOf(busId),
+                  outbound.shallowCopy(), inbound.shallowCopy(), 1));
           busId++;
           timeSinceLastBus.set(i, busStartTimings.get(i));
           timeSinceLastBus.set(i, timeSinceLastBus.get(i) - 1);
@@ -149,51 +159,41 @@ public class VisualizationSimulator {
     subjectStop.notifyObservers();
   }
 
-  public void listenBus(int id,MyWebServerSession session, MyWebServer myWS) {
-    for(int i=0; i <= busses.size() - 1; i++) {
-      Observer myObserver=(Observer) busses.get(i).getBusData();
+  /**
+   * This is a listenBus function passes if of the bus.
+   * @param id id of bus
+   * @param session session of myWebServerSession
+   * @param myWS myWS of MyWebServer
+   */
+  public void listenBus(int id, MyWebServerSession session, MyWebServer myWS) {
+    for (int i = 0; i <= busses.size() - 1; i++) {
+      Observer myObserver = (Observer) busses.get(i).getBusData();
       subjectBus.registerObserver((Observer) busses.get(i));
       //subjectImpl.measurementsChanged();
     }
-    for(int i=0; i <= busses.size() - 1; i++) {
-      if((busses.get(i).getBusData().getId()).equals(String.valueOf(id))) {
-        Observer myObserver=(Observer) busses.get(i).getBusData();
+    for (int i = 0; i <= busses.size() - 1; i++) {
+      if ((busses.get(i).getBusData().getId()).equals(String.valueOf(id))) {
+        Observer myObserver = (Observer) busses.get(i).getBusData();
         //subjectImpl.measurementsChanged();
-        myObserver.display( session, myWS);
+        myObserver.display(session, myWS);
       }
     }
   }
 
   /**
    * Display the information of Task8.
+   *
+   * @param session session for MyWebServerSession
+   * @param myWS    myWebServer for MyWebServer
    */
-  public void displayBus(MyWebServerSession session, MyWebServer myWS){
-//    JsonObject data = new JsonObject();
-//    data.addProperty("command","observeBus");
-//    String info = "";
-//    info = info + "BUS "  + myWS.busses.get(0).getId()
-//        +  "\n"
-//        + "-------------------------"
-//        +"\n"+"* Position: ("
-//        + myWS.busses.get(0).getPosition().getXcoordLoc()
-//        + ","
-//        + myWS.busses.get(0).getPosition().getYcoordLoc()
-//        + ")\n"
-//        + "* Passengers: "
-//        + myWS.busses.get(0).getNumPassengers()
-//        + "\n"
-//        + "* Capacity: "
-//        + myWS.busses.get(0).getCapacity();
-//    data.addProperty("text",info);
-//    session.sendJson(data);
-
+  public void displayBus(MyWebServerSession session, MyWebServer myWS) {
     JsonObject data = new JsonObject();
-    data.addProperty("command","observeBus");
+    data.addProperty("command", "observeBus");
     String info = "";
-    info = info + "BUS "  + busses.get(0).getBusData().getId()
-        +  "\n"
+    info = info + "BUS " + busses.get(0).getBusData().getId()
+        + "\n"
         + "-------------------------"
-        +"\n"+"* Position: ("
+        + "\n" + "* Position: ("
         + busses.get(0).getBusData().getPosition().getXcoordLoc()
         + ","
         + busses.get(0).getBusData().getPosition().getYcoordLoc()
@@ -203,20 +203,25 @@ public class VisualizationSimulator {
         + "\n"
         + "* Capacity: "
         + busses.get(0).getCapacity() + "\n" + "\n" + "\n";
-    data.addProperty("text",info);
+    data.addProperty("text", info);
     session.sendJson(data);
   }
 
+  /**
+   * This is a listenStop command.
+   * @param id id of the stop.
+   */
   public void listenStop(int id) {
-    for (int i = 0; i < prototypeRoutes.size(); i++){
+    for (int i = 0; i < prototypeRoutes.size(); i++) {
       List<Stop> stop = prototypeRoutes.get(i).getStops();
-      for (int j = 0; j < stop.size() - 1; j++){
-        if(id == stop.get(j).getId()){
+      for (int j = 0; j < stop.size() - 1; j++) {
+        if (id == stop.get(j).getId()) {
           subjectStop.registerObserver((Observer) stop.get(j));
           List<StopData> stopDataList = prototypeRoutes.get(i).getRouteData().getStops();
           stopdata = stopDataList.get(j);
-          subjectStop.setMeasurements(stopDataList.get(j).getId(), stopDataList.get(j).getPosition(),
-                  stopDataList.get(j).getNumPeople());
+          subjectStop.setMeasurements(stopDataList.get(j).getId(),
+              stopDataList.get(j).getPosition(),
+              stopDataList.get(j).getNumPeople());
           subjectStop.notifyObservers();
         }
       }
@@ -224,30 +229,14 @@ public class VisualizationSimulator {
     subjectStop.notifyObservers();
   }
 
-  public void display(MyWebServerSession session, MyWebServer myWS){
-//    JsonObject data = new JsonObject();
-//    data.addProperty("command","observeStop");
-//    for (int i = 0; i < prototypeRoutes.size(); i++) {
-//      List<StopData> stopDataList = prototypeRoutes.get(i).getRouteData().getStops();
-//      for (int j = 0; j < stopDataList.size(); j++) {
-//        StopData stopdata = stopDataList.get(j);
-//        String info = "";
-//        info += "STOP ID = " + stopdata.getId() + "\n"
-//                + "-------------------------"
-//                + "\n" + "* Position: ("
-//                + stopdata.getPosition().getXcoordLoc()
-//                + ","
-//                + stopdata.getPosition().getYcoordLoc()
-//                + ")\n"
-//                + "* Passengers: "
-//                + stopdata.getNumPeople();
-//        data.addProperty("text", info);
-//        session.sendJson(data);
-//      }
-//    }
-
+  /**
+   * This funciton displays the information of stop.
+   * @param session session of MyWebServerSession
+   * @param myWS myWS of MyWebServer
+   */
+  public void display(MyWebServerSession session, MyWebServer myWS) {
     JsonObject data = new JsonObject();
-    data.addProperty("command","observeStop");
+    data.addProperty("command", "observeStop");
     StopData stopdata = prototypeRoutes.get(0).getRouteData().getStops().get(0);
     String info = "";
     info += "STOP ID = " + stopdata.getId() + "\n"

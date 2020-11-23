@@ -11,7 +11,7 @@ public abstract class PassengerGenerator {
    * Constructor for Abstract class.
    *
    * @param stops list of stops
-   * @param l list of probabilities
+   * @param l     list of probabilities
    */
   public PassengerGenerator(List<Double> l, List<Stop> stops) {
     this.probs = new ArrayList<>();

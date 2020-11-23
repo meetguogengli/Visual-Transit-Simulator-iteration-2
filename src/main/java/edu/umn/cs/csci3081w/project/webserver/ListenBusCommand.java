@@ -3,7 +3,6 @@ package edu.umn.cs.csci3081w.project.webserver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import edu.umn.cs.csci3081w.project.model.BusData;
-
 import java.util.List;
 
 public class ListenBusCommand extends MyWebServerCommand {
@@ -32,17 +31,13 @@ public class ListenBusCommand extends MyWebServerCommand {
     JsonObject data = new JsonObject();
     data.addProperty("command", "listenBus");
     JsonArray bussesArray = new JsonArray();
-    int id=command.get("id").getAsInt();
+    int id = command.get("id").getAsInt();
     data.addProperty("id", id);
     mySim.displayBus(session, myWS);
     mySim.update();
     mySim.listenBus(id, session, myWS);
     session.sendJson(data);
 
-//    int id = command.get("id").getAsInt();
-//    mySim.update();
-//    mySim.listenBus(id, session, myWS);
-//    mySim.displayBus(session, myWS);
   }
 }
 

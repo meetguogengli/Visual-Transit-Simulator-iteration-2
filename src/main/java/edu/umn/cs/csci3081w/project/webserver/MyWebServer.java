@@ -17,8 +17,9 @@ public class MyWebServer implements WebInterface {
 
   /**
    * Updates a bus in the web server.
+   *
    * @param tempData incoming data
-   * @param deleted if bus was deleted
+   * @param deleted  if bus was deleted
    */
   public void updateBus(BusData tempData, boolean deleted) {
     BusData found = null;
@@ -44,8 +45,9 @@ public class MyWebServer implements WebInterface {
 
   /**
    * Updates route in the web server.
+   *
    * @param tempData incoming data
-   * @param deleted if route was deleted
+   * @param deleted  if route was deleted
    */
   public void updateRoute(RouteData tempData, boolean deleted) {
     RouteData found = null;

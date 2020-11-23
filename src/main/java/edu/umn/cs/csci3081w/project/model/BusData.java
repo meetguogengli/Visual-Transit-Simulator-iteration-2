@@ -9,10 +9,10 @@ public class BusData {
   /**
    * Stores details of a bus.
    *
-   * @param id bus id
-   * @param pos position of the bus
+   * @param id   bus id
+   * @param pos  position of the bus
    * @param pass number of passengers
-   * @param cap capacity of bus to be created
+   * @param cap  capacity of bus to be created
    */
   public BusData(String id, Position pos, int pass, int cap) {
     this.id = id;

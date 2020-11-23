@@ -88,7 +88,7 @@ public class ConfigManager {
             // Grabbing last element from list is hard, so cache position instead
             if (stops.size() > 1) {
               double dist = Math.sqrt((latitude - oldLat) * (latitude - oldLat)
-                      + (longitude - oldLon) * (longitude - oldLon));
+                  + (longitude - oldLon) * (longitude - oldLon));
               distances.add(dist);
             }
             oldLat = latitude;

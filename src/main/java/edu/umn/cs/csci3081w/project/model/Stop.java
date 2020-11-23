@@ -30,9 +30,9 @@ public class Stop {
   /**
    * Constructor for a stop.
    *
-   * @param id stop id
+   * @param id        stop id
    * @param longitude longitude
-   * @param latitude latitude
+   * @param latitude  latitude
    */
   public Stop(int id, double longitude, double latitude) {
     this.id = id;

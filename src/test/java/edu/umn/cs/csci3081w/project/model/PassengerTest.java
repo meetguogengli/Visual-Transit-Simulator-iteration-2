@@ -74,6 +74,7 @@ public class PassengerTest {
     int updatedWait = passenger.getTotalWait();
     assertEquals(1, updatedWait);
   }
+
   /**
    * Test passenger get out of bus.
    */
@@ -86,6 +87,7 @@ public class PassengerTest {
     int updatedWait = passenger.getTotalWait();
     assertEquals(1, updatedWait);
   }
+
   /**
    * Test passenger report function.
    */
@@ -101,13 +103,13 @@ public class PassengerTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Passenger Info Start####" + System.lineSeparator()
-                      + "Name: Goldy" + System.lineSeparator()
-                      + "Destination: 1" + System.lineSeparator()
-                      + "Total wait: 0" + System.lineSeparator()
-                      + "Wait at stop: 0" + System.lineSeparator()
-                      + "Time on bus: 0" + System.lineSeparator()
-                      + "####Passenger Info End####" + System.lineSeparator();
+          "####Passenger Info Start####" + System.lineSeparator()
+              + "Name: Goldy" + System.lineSeparator()
+              + "Destination: 1" + System.lineSeparator()
+              + "Total wait: 0" + System.lineSeparator()
+              + "Wait at stop: 0" + System.lineSeparator()
+              + "Time on bus: 0" + System.lineSeparator()
+              + "####Passenger Info End####" + System.lineSeparator();
       assertEquals(data, strToCompare);
     } catch (IOException ioe) {
       fail();

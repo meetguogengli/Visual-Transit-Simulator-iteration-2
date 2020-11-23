@@ -9,7 +9,7 @@ public class PassengerUnloader {
    * Unloads passengers.
    *
    * @param currentStop Current stop
-   * @param passengers list of passengers
+   * @param passengers  list of passengers
    * @return number of passengers unloaded
    */
   public int unloadPassengers(List<Passenger> passengers, Stop currentStop) {

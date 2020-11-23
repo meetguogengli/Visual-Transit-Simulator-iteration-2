@@ -21,11 +21,11 @@ public class Bus {
   /**
    * Constructor for a bus.
    *
-   * @param name name of bus
-   * @param out  outbound route
-   * @param in inbound route
+   * @param name     name of bus
+   * @param out      outbound route
+   * @param in       inbound route
    * @param capacity capacity of bus
-   * @param speed speed of bus
+   * @param speed    speed of bus
    */
   public Bus(String name, Route out, Route in, int capacity, double speed) {
     this.name = name;

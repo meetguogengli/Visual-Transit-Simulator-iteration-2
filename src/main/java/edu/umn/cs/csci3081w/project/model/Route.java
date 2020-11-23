@@ -18,10 +18,10 @@ public class Route {
   /**
    * Route constructor.
    *
-   * @param name name of route
-   * @param stops stops on this route
+   * @param name      name of route
+   * @param stops     stops on this route
    * @param distances distances between stops of this route
-   * @param numStops Number of stops on this route
+   * @param numStops  Number of stops on this route
    * @param generator Passenger generating object
    */
   public Route(String name, List<Stop> stops, List<Double> distances, int numStops,

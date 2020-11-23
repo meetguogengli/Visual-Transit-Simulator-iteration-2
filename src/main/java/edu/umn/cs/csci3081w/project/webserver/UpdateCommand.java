@@ -15,7 +15,7 @@ public class UpdateCommand extends MyWebServerCommand {
    *
    * @param session current simulation session
    * @param command the update simulation command content
-   * @param state the state of the simulation session
+   * @param state   the state of the simulation session
    */
   @Override
   public void execute(MyWebServerSession session, JsonObject command,

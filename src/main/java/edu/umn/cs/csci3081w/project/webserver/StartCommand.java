@@ -13,6 +13,7 @@ public class StartCommand extends MyWebServerCommand {
 
   /**
    * Start simulation constructor functionality.
+   *
    * @param sim simulation object
    */
   public StartCommand(VisualizationSimulator sim) {
@@ -26,7 +27,7 @@ public class StartCommand extends MyWebServerCommand {
    *
    * @param session current simulation session
    * @param command the content of the start simulations content
-   * @param state the state of the simulation session
+   * @param state   the state of the simulation session
    */
   @Override
   public void execute(MyWebServerSession session, JsonObject command,

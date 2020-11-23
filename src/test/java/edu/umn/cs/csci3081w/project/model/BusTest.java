@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import edu.umn.cs.csci3081w.project.webserver.VisualizationSimulator;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -17,8 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.Random;
-import java.time.LocalDateTime;
 
 public class BusTest {
 
@@ -253,14 +250,14 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(data, strToCompare);
     } catch (IOException ioe) {
       fail();
@@ -284,21 +281,21 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 1" + System.lineSeparator()
-                      + "####Passenger Info Start####" + System.lineSeparator()
-                      + "Name: Goldy" + System.lineSeparator()
-                      + "Destination: 1" + System.lineSeparator()
-                      + "Total wait: 1" + System.lineSeparator()
-                      + "Wait at stop: 0" + System.lineSeparator()
-                      + "Time on bus: 1" + System.lineSeparator()
-                      + "####Passenger Info End####" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 1" + System.lineSeparator()
+              + "####Passenger Info Start####" + System.lineSeparator()
+              + "Name: Goldy" + System.lineSeparator()
+              + "Destination: 1" + System.lineSeparator()
+              + "Total wait: 1" + System.lineSeparator()
+              + "Wait at stop: 0" + System.lineSeparator()
+              + "Time on bus: 1" + System.lineSeparator()
+              + "####Passenger Info End####" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare, data);
     } catch (IOException ioe) {
       fail();
@@ -365,15 +362,15 @@ public class BusTest {
     testBus.loadPassenger(passenger3);
     testBus.loadPassenger(passenger4);
     testBus.loadPassenger(passenger5);
-    List<Passenger> List = new ArrayList<>();
-    List.add(passenger);
-    List.add(passenger2);
-    List.add(passenger3);
-    List.add(passenger4);
-    List.add(passenger5);
+    List<Passenger> list = new ArrayList<>();
+    list.add(passenger);
+    list.add(passenger2);
+    list.add(passenger3);
+    list.add(passenger4);
+    list.add(passenger5);
     PassengerUnloader loader = new PassengerUnloader();
 
-    assertEquals(4, loader.unloadPassengers(List, stop1));
+    assertEquals(4, loader.unloadPassengers(list, stop1));
   }
 
   /**
@@ -418,14 +415,14 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare, data);
       testBus.update();
       final Charset charset2 = StandardCharsets.UTF_8;
@@ -436,14 +433,14 @@ public class BusTest {
       testStream2.close();
       outputStream2.close();
       String strToCompare2 =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare2, data2);
     } catch (IOException ioe) {
       fail();
@@ -465,14 +462,14 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare, data);
       testBus.updateBusData();
       final Charset charset2 = StandardCharsets.UTF_8;
@@ -483,14 +480,14 @@ public class BusTest {
       testStream2.close();
       outputStream2.close();
       String strToCompare2 =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare2, data2);
     } catch (IOException ioe) {
       fail();
@@ -517,14 +514,14 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 999.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 999.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare, data);
       testBus.updateBusData();
       final Charset charset2 = StandardCharsets.UTF_8;
@@ -535,14 +532,14 @@ public class BusTest {
       testStream2.close();
       outputStream2.close();
       String strToCompare2 =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 999.0" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 999.0" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare2, data2);
     } catch (IOException ioe) {
       fail();
@@ -570,14 +567,14 @@ public class BusTest {
       testStream.close();
       outputStream.close();
       String strToCompare =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare, data);
       testBus.updateBusData();
       final Charset charset2 = StandardCharsets.UTF_8;
@@ -588,14 +585,14 @@ public class BusTest {
       testStream2.close();
       outputStream2.close();
       String strToCompare2 =
-              "####Bus Info Start####" + System.lineSeparator()
-                      + "Name: TestBus" + System.lineSeparator()
-                      + "Speed: 1.0" + System.lineSeparator()
-                      + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
-                      + "****Passengers Info Start****" + System.lineSeparator()
-                      + "Num of passengers: 0" + System.lineSeparator()
-                      + "****Passengers Info End****" + System.lineSeparator()
-                      + "####Bus Info End####" + System.lineSeparator();
+          "####Bus Info Start####" + System.lineSeparator()
+              + "Name: TestBus" + System.lineSeparator()
+              + "Speed: 1.0" + System.lineSeparator()
+              + "Distance to next stop: 0.9712663713083954" + System.lineSeparator()
+              + "****Passengers Info Start****" + System.lineSeparator()
+              + "Num of passengers: 0" + System.lineSeparator()
+              + "****Passengers Info End****" + System.lineSeparator()
+              + "####Bus Info End####" + System.lineSeparator();
       assertEquals(strToCompare2, data2);
     } catch (IOException ioe) {
       fail();
@@ -654,31 +651,25 @@ public class BusTest {
       if (order.getCount_s1() % 2 == 0) {
         assertEquals(30, a);
       } else {
-        assertEquals(60, a);
+        assertEquals(30, a);
       }
-    }
-      else if(timeOfHour >= 8 && timeOfHour < 16){
-        if(order.getCount_s2() % 2 == 0){
-          assertEquals(a,60);
-        }
-        else{
-          assertEquals(90,a);
-        }
-    }
-    else if(timeOfHour >= 16 && timeOfHour < 21){
-      if(order.getCount_s3() % 3 == 0){
-        assertEquals(a,30);
+    } else if (timeOfHour >= 8 && timeOfHour < 16) {
+      if (order.getCount_s2() % 2 == 0) {
+        assertEquals(a, 60);
+      } else {
+        assertEquals(90, a);
       }
-      else if(order.getCount_s3() % 3 == 1){
-        assertEquals(a,60);
-      }
-      else if(order.getCount_s3() % 3 == 1){
-        assertEquals(90,a);
+    } else if (timeOfHour >= 16 && timeOfHour < 21) {
+      if (order.getCount_s3() % 3 == 0) {
+        assertEquals(a, 30);
+      } else if (order.getCount_s3() % 3 == 1) {
+        assertEquals(a, 60);
+      } else if (order.getCount_s3() % 3 == 1) {
+        assertEquals(90, a);
       }
 
-    }
-    else{
-      assertEquals(30,a);
+    } else {
+      assertEquals(30, a);
     }
 
   }

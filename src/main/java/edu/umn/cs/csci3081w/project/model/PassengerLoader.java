@@ -11,9 +11,9 @@ public class PassengerLoader {
    * weren't. This allows us to change the Passenger Loader without having to change
    * the Bus.
    *
-   * @param maxPass max number of passengers in bus
+   * @param maxPass      max number of passengers in bus
    * @param newPassenger new passenger to be laoded
-   * @param passengers list of passengers
+   * @param passengers   list of passengers
    * @return the number of passengers added
    */
   public boolean loadPassenger(Passenger newPassenger, int maxPass, List<Passenger> passengers) {

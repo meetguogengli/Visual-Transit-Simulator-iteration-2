@@ -14,7 +14,7 @@ public class PauseCommand extends MyWebServerCommand {
    *
    * @param session object representing the simulation session
    * @param command object containing the original command
-   * @param state object containing the state of the web server
+   * @param state   object containing the state of the web server
    */
   @Override
   public void execute(MyWebServerSession session, JsonObject command,

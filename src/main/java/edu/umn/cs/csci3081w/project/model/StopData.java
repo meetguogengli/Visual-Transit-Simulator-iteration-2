@@ -8,9 +8,9 @@ public class StopData {
   /**
    * StopData constructor.
    *
-   * @param id stop id
+   * @param id        stop id
    * @param numPeople Number of people
-   * @param position stop position
+   * @param position  stop position
    */
   public StopData(String id, Position position, int numPeople) {
     this.id = id;

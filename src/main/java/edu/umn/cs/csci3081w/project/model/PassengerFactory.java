@@ -17,7 +17,7 @@ public class PassengerFactory {
   public static int DETERMINISTIC_DESTINATION_COUNT = 0;
 
   static {
-    namePrefix = new String[] {
+    namePrefix = new String[]{
         "",  // who said we need to add a prefix?
         "bel",  // lets say that means "the good"
         "nar",  // "The not so good as Bel"
@@ -26,13 +26,13 @@ public class PassengerFactory {
         "natr",  // "the neutral/natral"
         "ev",  // Man am I original
     };
-    nameSuffix = new String[] {
+    nameSuffix = new String[]{
         "", "us", "ix", "ox", "ith",
         "ath", "um", "ator", "or", "axia",
         "imus", "ais", "itur", "orex", "o",
         "y"
     };
-    nameStemsArray = new String[] {
+    nameStemsArray = new String[]{
         "adur", "aes", "anim", "apoll", "imac",
         "educ", "equis", "extr", "guius", "hann",
         "equi", "amora", "hum", "iace", "ille",
@@ -54,7 +54,7 @@ public class PassengerFactory {
     if (PassengerFactory.DETERMINISTIC) {
       destination =
           ((PassengerFactory.DETERMINISTIC_DESTINATION_COUNT + 1) % (lastStop - currStop))
-                  + currStop + 1;
+              + currStop + 1;
       PassengerFactory.DETERMINISTIC_DESTINATION_COUNT++;
     } else {
       destination = ((rand.nextInt(1000) + 1) % (lastStop - currStop)) + currStop + 1;
@@ -77,8 +77,8 @@ public class PassengerFactory {
       PassengerFactory.DETERMINISTIC_NAMES_COUNT++;
     } else {
       str = namePrefix[(rand.nextInt(1000) + 1) % 7]
-              + nameStemsArray[(rand.nextInt(1000) + 1) % 20]
-              + nameSuffix[(rand.nextInt(1000) + 1) % 16];
+          + nameStemsArray[(rand.nextInt(1000) + 1) % 20]
+          + nameSuffix[(rand.nextInt(1000) + 1) % 16];
     }
     // Capitalize the string
     String cap = str.substring(0, 1).toUpperCase() + str.substring(1);

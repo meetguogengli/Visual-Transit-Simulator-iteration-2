@@ -13,7 +13,7 @@ public class Passenger {
   /**
    * Constructor for passenger.
    *
-   * @param name name of passenger
+   * @param name              name of passenger
    * @param destinationStopId destination stop id
    */
   public Passenger(int destinationStopId, String name) {
