@@ -54,4 +54,15 @@ public class OrderBasedBusFactory extends BusFactory{
         }
         return new SmallBus(name, outbound, inbound, speed);
     }
+    public int getCount_s1(){
+        return count_s1;
+    }
+    public int getCount_s2(){
+        return count_s2;
+
+    }
+    public int getCount_s3(){
+        return count_s3;
+    }
+
 }
