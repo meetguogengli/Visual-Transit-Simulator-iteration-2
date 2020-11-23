@@ -138,7 +138,7 @@ public class StopTest {
   }
 
   /**
-   * Tests if passengers can be loaded onto a bus with space correctly from a stop
+   * Tests if passengers can be loaded onto an empty bus with space correctly from a stop
    * loadPassengers returns the number of passengers at stop.
    */
   @Test
@@ -171,7 +171,7 @@ public class StopTest {
 
 
   /**
-   * Testing reporting functionality with no passenger.
+   * Testing stop reporting functionality with no passenger.
    */
   @Test
   public void testStopReportNoPassengers() {
@@ -199,7 +199,7 @@ public class StopTest {
   }
 
   /**
-   * Testing reporting functionality with passenger.
+   * Testing stop reporting functionality with passenger.
    */
   @Test
   public void testStopReportWithPassenger() {
