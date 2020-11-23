@@ -144,6 +144,7 @@ public class VisualizationSimulator {
         prototypeRoutes.get(i).report(System.out);
       }
     }
+    subjectImpl.notifyObservers();
   }
   public void listenStop(int id) {
     for (int i = 0; i < prototypeRoutes.size(); i++){
