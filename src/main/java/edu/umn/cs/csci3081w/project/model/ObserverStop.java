@@ -8,13 +8,13 @@ public class ObserverStop implements Observer {
     private String id;
     private Position position;
     private int numPeople;
-    private SubjectImpl subjectImpl;
+    private SubjectStop subjectStop;
     private MyWebServerSession session;
     private MyWebServer myWS;
 
-    public ObserverStop(SubjectImpl subjectImpl){
-        this.subjectImpl = subjectImpl;
-        subjectImpl.registerObserver(this);
+    public ObserverStop(SubjectStop subjectStop){
+        this.subjectStop = subjectStop;
+        subjectStop.registerObserver(this);
         session = new MyWebServerSession();
     }
 
@@ -23,11 +23,11 @@ public class ObserverStop implements Observer {
         this.id = id;
         this.position = position;
         this.numPeople = numPeople;
-        display(session);
+        display(session, myWS);
     }
 
     @Override
-    public void display(MyWebServerSession session){
+    public void display(MyWebServerSession session, MyWebServer myWS){
         JsonObject data = new JsonObject();
         data.addProperty("command","observeStop");
         String info = "";

@@ -26,7 +26,7 @@ public class ListenStopCommand extends MyWebServerCommand {
                         JsonObject command, MyWebServerSessionState state) {
 
         int id = command.get("id").getAsInt();
-//    sim.update();
+        sim.update();
         sim.listenStop(id);
         sim.display(session, server);
     }

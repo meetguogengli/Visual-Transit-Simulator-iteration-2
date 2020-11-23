@@ -58,6 +58,8 @@ public class MyWebServerSession {
     state.getCommands().put("listenStop", new ListenStopCommand(mySim));
     state.getCommands().put("initRoutes", new InitRoutesCommand(cm));
     state.getCommands().put("pause", new PauseCommand(mySim));
+    state.getCommands().put("listenBus", new ListenBusCommand(mySim));
+    state.getCommands().put("listenStop", new ListenStopCommand(mySim));
   }
 
 
