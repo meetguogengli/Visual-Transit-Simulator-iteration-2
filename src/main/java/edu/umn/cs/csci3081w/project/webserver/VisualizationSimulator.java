@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.time.LocalDateTime;
-
+import com.google.gson.JsonObject;
 public class VisualizationSimulator {
 
   private WebInterface webInterface;
@@ -20,7 +20,11 @@ public class VisualizationSimulator {
   private int busId = 1000;
   private boolean paused = false;
   private Random rand;
-  private BusFactory busFacotry;
+  private SubjectImpl subjectImpl;
+  private StopData stopdata;
+  private MyWebServerSession myWebServerSession;
+  private OrderBasedBusFactory busFacotry;
+
   /**
    * Constructor for Simulation.
    * @param webI MWS object
@@ -36,6 +40,11 @@ public class VisualizationSimulator {
     this.timeSinceLastBus = new ArrayList<Integer>();
     this.rand = new Random();
     this.busFacotry = new OrderBasedBusFactory();
+    this.subjectImpl = new SubjectImpl();
+    this.stopdata = new StopData();
+    this.myWebServerSession = new MyWebServerSession();
+    this.busFacotry = new OrderBasedBusFactory();
+
   }
 
   /**
@@ -135,5 +144,45 @@ public class VisualizationSimulator {
         prototypeRoutes.get(i).report(System.out);
       }
     }
+    subjectImpl.notifyObservers();
   }
+  public void listenStop(int id) {
+    for (int i = 0; i < prototypeRoutes.size(); i++){
+      List<Stop> stop = prototypeRoutes.get(i).getStops();
+      for (int j = 0; j < stop.size() - 1; j++){
+        if(id == stop.get(j).getId()){
+          subjectImpl.registerObserver((Observer) stop.get(j));
+          List<StopData> stopDataList = prototypeRoutes.get(i).getRouteData().getStops();
+          stopdata = stopDataList.get(j);
+          subjectImpl.setMeasurements(stopDataList.get(j).getId(), stopDataList.get(j).getPosition(),
+                  stopDataList.get(j).getNumPeople());
+          subjectImpl.notifyObservers();
+        }
+      }
+    }
+    subjectImpl.notifyObservers();
+  }
+
+  public void display(MyWebServerSession session, MyWebServer myWS){
+    JsonObject data = new JsonObject();
+    data.addProperty("command","observeStop");
+    for (int i = 0; i < prototypeRoutes.size(); i++) {
+      List<StopData> stopDataList = prototypeRoutes.get(i).getRouteData().getStops();
+      for (int j = 0; j < stopDataList.size(); j++) {
+        StopData stopdata = stopDataList.get(j);
+        String info = "";
+        info += "STOP ID = " + stopdata.getId() + "\n"
+                + "-------------------------"
+                + "\n" + "* Position: ("
+                + stopdata.getPosition().getXcoordLoc()
+                + ","
+                + stopdata.getPosition().getYcoordLoc()
+                + ")\n"
+                + "* Passengers: "
+                + stopdata.getNumPeople();
+        data.addProperty("text", info);
+        session.sendJson(data);
+      }
+    }
 }
+  }
